@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('access_count')->default(0)->nullable(false);
 
             // Timestamps
-            // Make sure to add timezones.
             $table->timestampsTz();
             $table->softDeletesTz('deleted_at');
 
