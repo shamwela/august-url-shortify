@@ -5,6 +5,7 @@ namespace App\Url;
 use App\Http\Controllers\Controller;
 use App\Rules\UrlRule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Str;
 
@@ -26,7 +27,8 @@ class UrlController extends Controller
                 $url :
                 "http://{$url}";
         $short_code = Str::random(5);
-        Url::create(compact('original_url', 'short_code'));
+        $user_id = Auth::user()->id;
+        Url::create(compact('original_url', 'short_code', 'user_id'));
 
         return redirect('/url');
     }

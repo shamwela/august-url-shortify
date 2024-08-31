@@ -12,6 +12,6 @@ Route::post('/auth/login', [AuthController::class, 'login'])->name('login');
 
 Route::delete('/auth/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::resource('url', UrlController::class);
-Route::get('/url/{url}/stats', [UrlController::class, 'stats'])->name('url.stats');
+Route::resource('url', UrlController::class)->middleware('auth');
+Route::get('/url/{url}/stats', [UrlController::class, 'stats'])->can('viewStats', 'url')->name('url.stats');
 Route::get('/{shortCode}', [UrlController::class, 'redirect'])->name('url.redirect');

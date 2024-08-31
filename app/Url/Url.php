@@ -9,9 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Url extends Model
 {
-    use HasFactory;
-    use HasUuids;
-    use SoftDeletes;
+    use HasFactory, HasUuids, SoftDeletes;
 
     protected $table = 'url';
 
@@ -19,5 +17,6 @@ class Url extends Model
         'original_url',
         'short_code',
         'access_count',
+        'user_id',
     ];
 }
