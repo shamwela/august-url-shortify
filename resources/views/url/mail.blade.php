@@ -1,0 +1,1 @@
+<p>Your new short code is {{ $shortCode }}</p>

@@ -3,9 +3,11 @@
 namespace App\Url;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UrlCreated;
 use App\Rules\UrlRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Str;
 
@@ -28,7 +30,10 @@ class UrlController extends Controller
                 "http://{$url}";
         $short_code = Str::random(5);
         $user_id = Auth::user()->id;
-        Url::create(compact('original_url', 'short_code', 'user_id'));
+        $newUrl = Url::create(compact('original_url', 'short_code', 'user_id'));
+
+        $email = $newUrl->user->email;
+        Mail::to($email)->send(new UrlCreated($newUrl));
 
         return redirect('/url');
     }
