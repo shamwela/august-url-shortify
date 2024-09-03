@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply p-4;
+}
+
+h1 {
+    @apply text-4xl font-medium;
+}
+
+button {
+    @apply py-0.5 px-3 border border-gray-400 text-gray-900 rounded-md;
+}
+
+a {
+    @apply text-blue-500 hover:underline;
+}
